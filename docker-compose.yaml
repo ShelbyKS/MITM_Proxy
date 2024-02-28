@@ -1,0 +1,30 @@
+version: '3.9'
+
+volumes:
+  postgres_data:
+
+services:
+  proxy-server:
+    container_name: proxy
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+#    depends_on:
+#      - postgres
+    ports:
+      - 8080:8080
+
+
+#  postgres:
+#    image: postgres:15.3-alpine
+#    container_name: postgres
+#    restart: always
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+##      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: 123
+#      POSTGRES_DB: proxydb
+#    ports:
+#      - 5434:5432
